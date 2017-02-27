@@ -34,6 +34,6 @@ public class Tile {
 	public static final void registerTiles(){} //dummy method to initialize static fields
 
 	public String toString(){
-		return id+"";
+		return getClass()+" ("+id+")";
 	}
 }

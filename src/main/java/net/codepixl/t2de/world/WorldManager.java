@@ -26,14 +26,13 @@ public class WorldManager {
 		}
 	}
 	public void render(){
-		glBegin(GL_QUADS);              // Each set of 4 vertices form a quad
 		for(int x = -10; x < 10; x++){
 			for(int y = -10; y < 10; y++){
 				Tile t = Tile.getTileById(tiles[x+10][y+10]);
 				float rx = (x - cX) * T2DE.zoomLevel;
 				float ry = (y - cY) * T2DE.zoomLevel;
 				GL11.glBegin(GL11.GL_QUADS);
-					glColor3f(t.getColor().r, t.getColor().g, t.getColor().b); // Red
+					glColor3f(t.getColor().r, t.getColor().g, t.getColor().b);
 					glVertex2f(rx,ry);    // x, y
 					glVertex2f(rx+T2DE.zoomLevel, ry);
 					glVertex2f( rx+T2DE.zoomLevel, ry+T2DE.zoomLevel);
@@ -41,7 +40,6 @@ public class WorldManager {
 				GL11.glEnd();
 			}
 		}
-		glEnd();
 
 
 		if(Keyboard.isKeyDown(GLFW_KEY_W)) cY++;

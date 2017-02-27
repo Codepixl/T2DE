@@ -25,6 +25,8 @@ public class T2DE {
 
 	public static float zoomLevel = 10;
 
+	public static int WIDTH, HEIGHT;
+
 	public void run(){
 		GLFWErrorCallback.createPrint(System.err).set();
 
@@ -74,6 +76,11 @@ public class T2DE {
 			);
 		} // the stack frame is popped automatically
 
+		glfwSetWindowSizeCallback(window, (window, width, height) -> {
+			WIDTH = width;
+			HEIGHT = height;
+		});
+
 		// Make the OpenGL context current
 		glfwMakeContextCurrent(window);
 		// Enable v-sync
@@ -111,7 +118,8 @@ public class T2DE {
 		while ( !glfwWindowShouldClose(window) ) {
 			GL11.glLoadIdentity();
 			GL11.glMatrixMode(GL11.GL_PROJECTION);
-			GL11.glOrtho(-300, 300, -300, 300, -1, 1 );
+			GL11.glOrtho(-WIDTH/2, WIDTH/2, -HEIGHT/2, HEIGHT/2, -1, 1 );
+			glViewport(0,0,WIDTH,HEIGHT);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			w.render();
 			glfwSwapBuffers(window);
